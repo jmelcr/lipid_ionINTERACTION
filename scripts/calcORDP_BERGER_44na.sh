@@ -1,12 +1,13 @@
+#!/bin/bash
 tmpDIRname=BERGER_44na_OPtmp
 mkdir $tmpDIRname
 cd $tmpDIRname
 cp ../calcORDPberger.sh ./
 cp ../gro_OP.awk ./
-trajname=/wrk/ollilas1/IONS/run2.trr
-tprname=/wrk/ollilas1/IONS/run2.tpr
-tprname402=/wrk/ollilas1/IONS/run407.tpr
-hdbfile=/wrk/ollilas1/IONS/ffgmx2.hdb
+trajname=/m/nbe/work/ollilas1/IONS/run2.trr
+tprname=/m/nbe/work/ollilas1/IONS/run2.tpr
+tprname402=/m/nbe/work/ollilas1/IONS/run407.tpr
+hdbfile=/m/nbe/work/ollilas1/IONS/ffgmx2.hdb
 cp $hdbfile ./
 starttime=0
 numberOFlipids=128
@@ -22,7 +23,7 @@ q
 for((  j = 1 ;  j <= $numberOFlipids;  j=j+1  ))
 do
     rm runPROT.gro
-    echo "$j" | /home/ollilas1/gromacs/gromacs402/bin/protonate -f trjtmpINBOX.xtc -s $tprname402 -o runPROT.gro -n index.ndx
+    echo "$j" | /m/nbe/home/ollilas1/gromacs/gromacs402/bin/protonate -f trjtmpINBOX.xtc -s $tprname402 -o runPROT.gro -n index.ndx
     sh calcORDPberger.sh > OrderParameters_"$j".dat
 done
 #Calculate average and the error of the mean of order parameters over lipids.
